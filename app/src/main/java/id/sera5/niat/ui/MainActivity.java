@@ -1,18 +1,12 @@
 package id.sera5.niat.ui;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
-import java.util.Locale;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -20,27 +14,44 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+import java.util.Random;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dmax.dialog.SpotsDialog;
 import id.sera5.niat.R;
-import id.sera5.niat.data.HttpRequest;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
+import id.sera5.niat.data.Constants;
+import id.sera5.niat.utils.CharacterUtils;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG =  MainActivity.class.getName();
+    private static final String TAG = MainActivity.class.getName();
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
     @BindView(R.id.nav_view)
     NavigationView navView;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
+    @BindView(R.id.proyek)
+    TextView proyek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +60,6 @@ public class MainActivity extends AppCompatActivity
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -59,7 +67,7 @@ public class MainActivity extends AppCompatActivity
 
         navView.setNavigationItemSelectedListener(this);
 
-        testJSON();
+        loadAyat();
     }
 
     @Override
@@ -117,19 +125,38 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    void testJSON() {
-        String url = String.format(Locale.US, "https://api.banghasan.com/quran/format/json/surat/%d", 1);
+    void loadAyat() {
+        String url = String.format(Locale.US, "http://api.alquran.cloud/v1/surah/%d/editions/quran-uthmani,id.indonesian", new Random().nextInt(Constants.JUMLAH_SURAT - 1));
 
-        HttpRequest.getInstance().request(url, new Callback() {
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+        AlertDialog ad = new SpotsDialog.Builder().setContext(this).build();
 
+        ad.show();
+
+        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET, url, response -> {
+            try {
+                ad.dismiss();
+                JSONObject obj = new JSONObject(response);
+                JSONArray hasil = obj.getJSONArray("data");
+
+                JSONObject arabic = hasil.getJSONObject(Constants.ARABIC_SECTION);
+                JSONObject indo = hasil.getJSONObject(Constants.INDONESIA_SECTION);
+
+                String namaSurat = arabic.getString("englishName");
+
+                int jumlah_ayat = arabic.getInt("numberOfAyahs") - 1;
+
+                int random = new Random().nextInt(jumlah_ayat);
+
+                String teksArab = arabic.getJSONArray("ayahs").getJSONObject(random).getString("text");
+                String teksIndo = indo.getJSONArray("ayahs").getJSONObject(random).getString("text");
+                String label = String.format(Locale.US, "Surat %s ayat %d",namaSurat,random);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) {
-                Log.d(TAG, response.toString());
-            }
-        });
+        }, error -> {
+            //aa
+            //bb
+        }));
     }
 }
