@@ -2,11 +2,9 @@ package id.sera5.niat.ui;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,19 +14,14 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.Random;
 
@@ -37,7 +30,6 @@ import butterknife.ButterKnife;
 import dmax.dialog.SpotsDialog;
 import id.sera5.niat.R;
 import id.sera5.niat.data.Constants;
-import id.sera5.niat.utils.CharacterUtils;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,8 +42,8 @@ public class MainActivity extends AppCompatActivity
     NavigationView navView;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
-    @BindView(R.id.proyek)
-    TextView proyek;
+    @BindView(R.id.go_ayat)
+    Button goAyat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,7 +141,7 @@ public class MainActivity extends AppCompatActivity
 
                 String teksArab = arabic.getJSONArray("ayahs").getJSONObject(random).getString("text");
                 String teksIndo = indo.getJSONArray("ayahs").getJSONObject(random).getString("text");
-                String label = String.format(Locale.US, "Surat %s ayat %d",namaSurat,random);
+                String label = String.format(Locale.US, "Surat %s ayat %d", namaSurat, random);
 
             } catch (JSONException e) {
                 e.printStackTrace();

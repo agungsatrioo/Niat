@@ -9,16 +9,10 @@
     tools:showIn="@layout/app_bar_main"
     android:padding="10dp">
 
-    <ScrollView
+    <Button
+        android:id="@+id/go_ayat"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/proyek"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="akasjka"/>
-
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:text="Go"></Button>
 
 </LinearLayout>
