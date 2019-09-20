@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -13,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -23,7 +23,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.sera5.niat.R;
-import id.sera5.niat.data.AyatGetter;
+import id.sera5.niat.data.HttpRequest;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -113,20 +113,21 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     void testJSON() {
-        AyatGetter.getInstance().getAyat(1, 1, new Callback() {
+        String url = String.format(Locale.US, "https://api.banghasan.com/quran/format/json/surat/%d", 1);
+
+        HttpRequest.getInstance().request(url, new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
 
             }
 
             @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+            public void onResponse(@NotNull Call call, @NotNull Response response) {
                 Log.d(TAG, response.toString());
             }
         });

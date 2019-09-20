@@ -1,30 +1,27 @@
 package id.sera5.niat.data;
 
-import java.io.IOException;
 import java.util.Locale;
-import java.util.Objects;
 
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 
-public class AyatGetter {
-    private static AyatGetter object;
+public class HttpRequest {
+    private static HttpRequest object;
     private OkHttpClient client;
     private String reponse;
     private int number;
 
-    public static synchronized AyatGetter getInstance() {
-        if(object == null) object = new AyatGetter();
+    public static synchronized HttpRequest getInstance() {
+        if(object == null) object = new HttpRequest();
         return object;
     }
 
-    private AyatGetter() {
+    private HttpRequest() {
         client = new OkHttpClient();
     }
 
-    private void request(String url, Callback cb) {
+    public void request(String url, Callback cb) {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -32,7 +29,7 @@ public class AyatGetter {
         client.newCall(request).enqueue(cb);
     }
 
-    public void getAyat(int surat, int ayat,  Callback cb) {
+    private void getAyat(int surat, int ayat,  Callback cb) {
         String url = String.format(Locale.US, "https://api.banghasan.com/quran/format/json/surat/%d/ayat/%d", surat, ayat);
 
         request(url, cb);
