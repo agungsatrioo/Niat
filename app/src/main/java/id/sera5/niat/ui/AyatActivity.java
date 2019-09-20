@@ -9,7 +9,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.sera5.niat.R;
 
-public class AyatActivity extends AppCompatActivity {
+public class AyatActivity extends BaseActivity {
 
     @BindView(R.id.hurufArab)
     TextView hurufArab;
@@ -34,7 +34,6 @@ public class AyatActivity extends AppCompatActivity {
         hurufArab.setText(arab);
         hurufIndo.setText(indo);
 
-        if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        else if(getActionBar()!=null) getActionBar().setDisplayHomeAsUpEnabled(true);
+        setBackButton();
 }
 }

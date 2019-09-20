@@ -35,4 +35,5 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation 'com.android.volley:volley:1.1.0'
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
+    implementation 'com.github.rygelouv:android-audio-sensei:0.1.2'
 }

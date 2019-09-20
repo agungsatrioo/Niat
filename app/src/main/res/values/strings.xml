@@ -1,9 +1,19 @@
 <resources>
-    <string name="app_name">Niat</string>
+    <string name="app_name">Garpu Tala Magnet Rezeki</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Garpu Tala</string>
+    <string name="nav_header_subtitle">Magnet rezeki</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="main_go_button">Go</string>
+
+    <string name="pengetahuan_text">Garpu tala adalah alat yang berbentuk seperti garpu bergigi dua (atau berbentuk huruf y) dan beresonansi pada frekuensi tertentu bila dihentakkan pada suatu benda.\nAl quran adalah sebuah tools yang kita pakai untuk mendapatkan ketenangan batin, kita hanya butuh Al Quran.
+\n\nKetika anda sedang memahami ilmu garpu tala ini, akhirnya kita ga butuh yang lain, yang kita butuhkan adalah getaran yang amat kuat dari alam semesta yang Allah titipkan yaitu Al Quran untuk menjadi kekuatan batin buat kita
+\n\nAl Quran adalah sebuah energy garpu tala yang Allah titipkan di muka bumi.</string>
+
+    <string name="dasar_hukum">
+        “Demikianlah Kami wahyukan ruh (Al Qur’an) kepadamu dari sisi Kami. Sebelumnya kamu (Muhammad) tidaklah mengetahui apakah Al Kitab (Al Quran) dan tidak pula mengetahui apakah iman itu, tetapi Kami menjadikan Al Quran itu cahaya, yang Kami tunjuki dengan dia siapa yang kami kehendaki di antara hamba-hamba Kami. Dan sesungguhnya kamu (Muhammad) benar-benar memberi petunjuk kepada jalan yang lurus” (QS. Asy-Syura: 52)
+\n\nKalimat singkat dari Sayyidina Abu Bakar ash-Shiddiq “Jika aku,” kata ayah Ummul Mukminin ‘Aisyah Radhiyallahu ‘anhuma ini, “kehilangan tali unta, maka aku akan menemukan jawabannya di dalam al-Qur’an.”
+    </string>
 </resources>

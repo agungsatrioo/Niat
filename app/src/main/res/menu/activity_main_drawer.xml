@@ -5,33 +5,29 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_pengetahuan"
+            android:icon="@drawable/ic_lightbulb_outline_black_24dp"
+            android:title="Pengetahuan" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_dasarhukum"
+            android:icon="@drawable/ic_account_balance_black_24dp"
+            android:title="Dasar Hukum" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_audio"
+            android:icon="@drawable/ic_audiotrack_black_24dp"
+            android:title="Audio" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Lain-lain">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_support"
+                android:icon="@drawable/ic_supervisor_account_black_24dp"
+                android:title="Dukung kami" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_info_outline_black_24dp"
+                android:title="Tentang" />
         </menu>
     </item>
 

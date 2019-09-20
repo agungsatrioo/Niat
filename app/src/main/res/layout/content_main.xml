@@ -7,12 +7,41 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.MainActivity"
     tools:showIn="@layout/app_bar_main"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/cbWudu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Ambil air wudhu"/>
+
+    <CheckBox
+        android:id="@+id/cbSunnah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Salat sunnah dua rakaat"/>
+
+    <CheckBox
+        android:id="@+id/cbBasmallah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Membaca basmallah dan salawat"/>
+
+    <CheckBox
+        android:id="@+id/cbMohonAllah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Yaa Allah saya ada masalah. Tolong titipkan satu ayat saja untuk menjadi hiburan untuk saya (dalam jiwa dan pikiran)"/>
 
     <Button
         android:id="@+id/go_ayat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Go"></Button>
+        android:text="@string/main_go_button" />
 
 </LinearLayout>

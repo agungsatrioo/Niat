@@ -21,7 +21,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ini huruf arabnya"
-                android:textSize="20sp"/>
+                android:fontFamily="@font/arabic"
+                android:textColor="#000"
+                android:textSize="50sp"/>
 
             <TextView
                 android:id="@+id/hurufIndo"
