@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity
     void loadAyat() {
         String url = String.format(Locale.US, "http://api.alquran.cloud/v1/surah/%d/editions/quran-uthmani,id.indonesian", new Random().nextInt(Constants.JUMLAH_SURAT - 1));
 
-        AlertDialog ad = new SpotsDialog.Builder().setContext(this).build();
+        AlertDialog ad = new SpotsDialog.Builder().setMessage("Menyiapkan ayat...").setContext(this).build();
 
         ad.show();
 
