@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Objects;
 
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -23,21 +24,17 @@ public class AyatGetter {
         client = new OkHttpClient();
     }
 
-    private String request(String url) throws IOException {
+    private void request(String url, Callback cb) {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
 
-        try (Response response = client.newCall(request).execute()) {
-            return Objects.requireNonNull(response.body()).string();
-        }
+        client.newCall(request).enqueue(cb);
     }
 
-    public String getAyat(int surat, int ayat) {
-        try {
-            return request(String.format(Locale.US, "https://api.banghasan.com/quran/format/json/surat/%d/ayat/%d", surat, ayat));
-        } catch (IOException e) {
-            return "";
-        }
+    public void getAyat(int surat, int ayat,  Callback cb) {
+        String url = String.format(Locale.US, "https://api.banghasan.com/quran/format/json/surat/%d/ayat/%d", surat, ayat);
+
+        request(url, cb);
     }
 }

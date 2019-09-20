@@ -10,6 +10,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +24,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.sera5.niat.R;
 import id.sera5.niat.data.AyatGetter;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -112,6 +119,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     void testJSON() {
-        Log.d(TAG, AyatGetter.getInstance().getAyat(1,1));
+        AyatGetter.getInstance().getAyat(1, 1, new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                Log.d(TAG, response.toString());
+            }
+        });
     }
 }
