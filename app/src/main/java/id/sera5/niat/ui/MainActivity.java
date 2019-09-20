@@ -1,9 +1,11 @@
 package id.sera5.niat.ui;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -142,6 +144,15 @@ public class MainActivity extends AppCompatActivity
                 String teksArab = arabic.getJSONArray("ayahs").getJSONObject(random).getString("text");
                 String teksIndo = indo.getJSONArray("ayahs").getJSONObject(random).getString("text");
                 String label = String.format(Locale.US, "Surat %s ayat %d", namaSurat, random);
+
+                goAyat.setOnClickListener(view -> {
+                    Intent i = new Intent(MainActivity.this, AyatActivity.class);
+                    i.putExtra("label",label);
+                    i.putExtra("arab",teksArab);
+                    i.putExtra("indo",teksIndo);
+
+                    startActivity(i);
+                });
 
             } catch (JSONException e) {
                 e.printStackTrace();
