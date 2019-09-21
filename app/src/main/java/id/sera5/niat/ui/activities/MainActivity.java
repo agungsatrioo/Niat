@@ -103,6 +103,10 @@ public class MainActivity extends BaseActivity
             case R.id.nav_about:
                 launchActivity(MainActivity.this, AboutActivity.class);
                 break;
+
+            case R.id.nav_history:
+                launchActivity(MainActivity.this, HistoryActivity.class);
+                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
