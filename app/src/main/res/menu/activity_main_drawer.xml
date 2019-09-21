@@ -16,6 +16,10 @@
             android:id="@+id/nav_audio"
             android:icon="@drawable/ic_audiotrack_black_24dp"
             android:title="Audio" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_history_black_24dp"
+            android:title="Riwayat" />
     </group>
 
     <item android:title="Lain-lain">

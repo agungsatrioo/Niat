@@ -7,15 +7,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
-
-    private static final String DATABASE_NAME = "db_niat";
-    private static final String TABLE_TALL = "history";
-
+    public static final String TABLE_TALL = "history";
     public static final String COL_ID = "_ID";
     public static final String COL_SURAT = "_SURAT";
     public static final String COL_AYAT = "_AYAT";
     public static final String COL_DATE = "_TANGGAL";
+    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "db_niat";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -23,11 +21,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String query = String.format(Locale.US,"CREATE TABLE %s (" +
-                "%s INTEGER PRIMARY KEY,"+
-                "%s INTEGER NOT NULL,"+
-                "%s INTEGER NOT NULL,"+
-                "%s TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,"+
+        String query = String.format(Locale.US, "CREATE TABLE %s (" +
+                "%s INTEGER PRIMARY KEY," +
+                "%s INTEGER NOT NULL," +
+                "%s INTEGER NOT NULL," +
+                "%s TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL," +
                 ");", TABLE_TALL, COL_ID, COL_SURAT, COL_AYAT, COL_DATE);
 
         sqLiteDatabase.execSQL(query);

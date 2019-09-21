@@ -1,4 +1,4 @@
-package id.sera5.niat.ui.misc;
+package id.sera5.niat.ui.activities.misc;
 
 import android.os.Bundle;
 
@@ -7,7 +7,7 @@ import com.rygelouv.audiosensei.player.AudioSenseiPlayerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.sera5.niat.R;
-import id.sera5.niat.ui.BaseActivity;
+import id.sera5.niat.ui.activities.BaseActivity;
 
 public class AudioActivity extends BaseActivity {
 

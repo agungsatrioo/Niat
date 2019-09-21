@@ -1,9 +1,7 @@
-package id.sera5.niat.ui;
+package id.sera5.niat.ui.activities;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
@@ -13,31 +11,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.android.volley.Request;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import dmax.dialog.SpotsDialog;
 import id.sera5.niat.R;
-import id.sera5.niat.data.Constants;
-import id.sera5.niat.ui.misc.AboutActivity;
-import id.sera5.niat.ui.misc.AudioActivity;
-import id.sera5.niat.ui.misc.DasarHukumActivity;
-import id.sera5.niat.ui.misc.PengetahuanActivity;
-import id.sera5.niat.ui.misc.SupportUsActivity;
-import id.sera5.niat.utils.CommonUtils;
+import id.sera5.niat.ui.activities.misc.AboutActivity;
+import id.sera5.niat.ui.activities.misc.AudioActivity;
+import id.sera5.niat.ui.activities.misc.DasarHukumActivity;
+import id.sera5.niat.ui.activities.misc.PengetahuanActivity;
+import id.sera5.niat.ui.activities.misc.SupportUsActivity;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -124,12 +110,12 @@ public class MainActivity extends BaseActivity
     }
 
     private void gotoAyat() {
-        for(CheckBox a: cbList) {
+        for (CheckBox a : cbList) {
             a.setError(null);
         }
 
-        for(CheckBox a: cbList) {
-            if(!a.isChecked()) {
+        for (CheckBox a : cbList) {
+            if (!a.isChecked()) {
                 a.setError("Jangan lupa yang ini, ya.");
                 return;
             }

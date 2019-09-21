@@ -1,10 +1,10 @@
-package id.sera5.niat.ui;
+package id.sera5.niat.ui.activities;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
@@ -31,6 +31,8 @@ public class AyatActivity extends BaseActivity {
     @BindView(R.id.hurufIndo)
     TextView hurufIndo;
 
+    int suratRandom, ayat = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,15 +40,38 @@ public class AyatActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         Bundle b = getIntent().getExtras();
-        if(b != null) {
-            String label = b.getString("label");
-            String arab = b.getString("arab");
-            String indo = b.getString("indo");
 
-            setView(label, arab, indo);
-        } else randomAyat();
+        if (b != null) {
+            suratRandom = b.getInt("surat");
+            ayat = b.getInt("ayat");
+
+            findAyat(suratRandom, ayat);
+        } else {
+            suratRandom = CommonUtils.getRandomNumberInRange(2, Constants.JUMLAH_SURAT);
+            randomAyat(suratRandom);
+        }
 
         setBackButton();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_view_surat:
+                Bundle b = new Bundle();
+                b.putInt("surat", suratRandom);
+
+                launchActivity(AyatActivity.this, SuratActivity.class, b);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void setView(String label, String arab, String indo) {
@@ -55,8 +80,8 @@ public class AyatActivity extends BaseActivity {
         hurufIndo.setText(indo);
     }
 
-    private void randomAyat() {
-        String url = String.format(Locale.US, "http://api.alquran.cloud/v1/surah/%d/editions/quran-uthmani,id.indonesian", CommonUtils.getRandomNumberInRange(2, Constants.JUMLAH_SURAT));
+    private void findAyat(int surat, int ayat) {
+        String url = String.format(Locale.US, "http://api.alquran.cloud/v1/surah/%d/editions/quran-uthmani,id.indonesian", surat);
 
         AlertDialog ad = new SpotsDialog.Builder().setMessage("Menyiapkan ayat...").setContext(this).build();
 
@@ -64,6 +89,8 @@ public class AyatActivity extends BaseActivity {
 
         Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET, url, response -> {
             try {
+                int random = ayat - 1;
+
                 ad.dismiss();
                 JSONObject obj = new JSONObject(response);
                 JSONArray hasil = obj.getJSONArray("data");
@@ -75,15 +102,12 @@ public class AyatActivity extends BaseActivity {
 
                 int jumlah_ayat = arabic.getInt("numberOfAyahs") - 1;
 
-                int random = new Random().nextInt(jumlah_ayat);
+                if (random < 0) random = new Random().nextInt(jumlah_ayat);
 
-                String teksArab = arabic.getJSONArray("ayahs").getJSONObject(random).getString("text");
+                String teksArab = arabic.getJSONArray("ayahs").getJSONObject(random).getString("text").replace(Constants.BASMALLAH, "");
+                ;
                 String teksIndo = indo.getJSONArray("ayahs").getJSONObject(random).getString("text");
-                String label = String.format(Locale.US, "Surat %s ayat %d", namaSurat, (random + 1));
-
-                if(random==1) {
-                    teksArab = teksArab.replace(Constants.BASMALLAH, "");
-                }
+                String label = String.format(Locale.US, "%s (%d): %d", namaSurat, surat, (random + 1));
 
                 setView(label, teksArab, teksIndo);
 
@@ -94,5 +118,9 @@ public class AyatActivity extends BaseActivity {
             //aa
             //bb
         }));
+    }
+
+    private void randomAyat(int surat) {
+        findAyat(surat, -1);
     }
 }

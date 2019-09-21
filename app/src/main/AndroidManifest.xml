@@ -11,14 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.misc.SupportUsActivity"></activity>
-        <activity android:name=".ui.misc.AboutActivity" />
-        <activity android:name=".ui.misc.AudioActivity" />
-        <activity android:name=".ui.misc.DasarHukumActivity" />
-        <activity android:name=".ui.misc.PengetahuanActivity" />
-        <activity android:name=".ui.AyatActivity" />
+        <activity android:name=".ui.activities.SuratActivity"></activity>
+        <activity android:name=".ui.activities.misc.SupportUsActivity" />
+        <activity android:name=".ui.activities.misc.AboutActivity" />
+        <activity android:name=".ui.activities.misc.AudioActivity" />
+        <activity android:name=".ui.activities.misc.DasarHukumActivity" />
+        <activity android:name=".ui.activities.misc.PengetahuanActivity" />
+        <activity android:name=".ui.activities.AyatActivity" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

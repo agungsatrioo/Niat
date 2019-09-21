@@ -1,11 +1,9 @@
-package id.sera5.niat.ui.misc;
-
-import androidx.appcompat.app.AppCompatActivity;
+package id.sera5.niat.ui.activities.misc;
 
 import android.os.Bundle;
 
 import id.sera5.niat.R;
-import id.sera5.niat.ui.BaseActivity;
+import id.sera5.niat.ui.activities.BaseActivity;
 
 public class SupportUsActivity extends BaseActivity {
 

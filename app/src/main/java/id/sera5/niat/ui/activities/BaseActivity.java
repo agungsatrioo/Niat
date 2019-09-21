@@ -1,18 +1,50 @@
-package id.sera5.niat.ui;
+package id.sera5.niat.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import id.sera5.niat.data.DatabaseHelper;
+
 public class BaseActivity extends AppCompatActivity {
+
+    private DatabaseHelper db;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (db == null) db = new DatabaseHelper(this);
+    }
+
+    public SQLiteDatabase getReadableDatabase() {
+        return db.getReadableDatabase();
+    }
+
+    public SQLiteDatabase getWritableDatabase() {
+        return db.getWritableDatabase();
+    }
+
+
+    public void printDB() {
+        SQLiteDatabase mdb = getReadableDatabase();
+
+        Cursor c = mdb.rawQuery("SELECT * FROM " + DatabaseHelper.TABLE_TALL, null);
+
+        if (c.moveToFirst()) {
+            do {
+
+            } while (c.moveToNext());
+        }
+
+        c.close();
+
     }
 
     protected void launchActivity(Context c, Class<?> cls, Bundle bundle) {

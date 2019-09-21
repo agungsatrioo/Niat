@@ -4,7 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.AyatActivity">
+    tools:context=".ui.activities.AyatActivity">
+
+    <Button
+        android:id="@+id/btn_save_ayat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Simpan ayat"
+        android:layout_margin="10dp"/>
 
     <ScrollView
         android:layout_width="match_parent"

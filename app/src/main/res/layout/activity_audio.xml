@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.misc.AudioActivity">
+    tools:context=".ui.activities.misc.AudioActivity">
 
     <com.rygelouv.audiosensei.player.AudioSenseiPlayerView
         android:id="@+id/audio_player"
