@@ -20,7 +20,6 @@
                 android:id="@+id/hurufArab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ini huruf arabnya"
                 android:fontFamily="@font/arabic"
                 android:textColor="#000"
                 android:textSize="50sp"/>
@@ -29,7 +28,6 @@
                 android:id="@+id/hurufIndo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ini terjemahannya"
                 android:layout_marginTop="10dp"/>
 
         </LinearLayout>

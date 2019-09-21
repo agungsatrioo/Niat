@@ -11,28 +11,28 @@
     android:orientation="vertical">
 
     <CheckBox
-        android:id="@+id/cbWudu"
+        android:id="@+id/cbwudu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="Ambil air wudhu"/>
 
     <CheckBox
-        android:id="@+id/cbSunnah"
+        android:id="@+id/cbsunnah"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="Salat sunnah dua rakaat"/>
 
     <CheckBox
-        android:id="@+id/cbBasmallah"
+        android:id="@+id/cbbasmallah"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="Membaca basmallah dan salawat"/>
 
     <CheckBox
-        android:id="@+id/cbMohonAllah"
+        android:id="@+id/cbmohonAllah"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"

@@ -3,6 +3,7 @@ package id.sera5.niat.ui;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
@@ -51,13 +52,13 @@ public class MainActivity extends BaseActivity
     DrawerLayout drawer;
     @BindView(R.id.go_ayat)
     Button goAyat;
-    @BindView(R.id.cbWudu)
+    @BindView(R.id.cbwudu)
     CheckBox cbWudu;
-    @BindView(R.id.cbSunnah)
+    @BindView(R.id.cbsunnah)
     CheckBox cbSunnah;
-    @BindView(R.id.cbBasmallah)
+    @BindView(R.id.cbbasmallah)
     CheckBox cbBasmallah;
-    @BindView(R.id.cbMohonAllah)
+    @BindView(R.id.cbmohonAllah)
     CheckBox cbMohonAllah;
 
     List<CheckBox> cbList;
@@ -83,7 +84,7 @@ public class MainActivity extends BaseActivity
 
         navView.setNavigationItemSelectedListener(this);
 
-        loadAyat();
+        goAyat.setOnClickListener(view -> gotoAyat());
     }
 
     @Override
@@ -122,58 +123,7 @@ public class MainActivity extends BaseActivity
         return false;
     }
 
-    void loadAyat() {
-        String url = String.format(Locale.US, "http://api.alquran.cloud/v1/surah/%d/editions/quran-uthmani,id.indonesian", CommonUtils.getRandomNumberInRange(2,Constants.JUMLAH_SURAT));
-
-        AlertDialog ad = new SpotsDialog.Builder().setMessage("Menyiapkan ayat...").setContext(this).build();
-
-        ad.show();
-
-        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET, url, response -> {
-            try {
-                ad.dismiss();
-                JSONObject obj = new JSONObject(response);
-                JSONArray hasil = obj.getJSONArray("data");
-
-                JSONObject arabic = hasil.getJSONObject(Constants.ARABIC_SECTION);
-                JSONObject indo = hasil.getJSONObject(Constants.INDONESIA_SECTION);
-
-                String namaSurat = arabic.getString("englishName");
-
-                int jumlah_ayat = arabic.getInt("numberOfAyahs") - 1;
-
-                int random = new Random().nextInt(jumlah_ayat);
-
-                String teksArab = arabic.getJSONArray("ayahs").getJSONObject(random).getString("text");
-                String teksIndo = indo.getJSONArray("ayahs").getJSONObject(random).getString("text");
-                String label = String.format(Locale.US, "Surat %s ayat %d", namaSurat, (random + 1));
-
-                if(random==1) {
-                    teksArab = teksArab.replace(Constants.BASMALLAH, "");
-                }
-
-                String finalTeksArab = teksArab;
-
-                goAyat.setOnClickListener(view -> {
-                    Bundle b = new Bundle();
-                    b.putString("label", label);
-                    b.putString("arab", finalTeksArab);
-                    b.putString("indo", teksIndo);
-
-                    gotoAyat(b);
-
-                });
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }, error -> {
-            //aa
-            //bb
-        }));
-    }
-
-    private void gotoAyat(Bundle b) {
+    private void gotoAyat() {
         for(CheckBox a: cbList) {
             a.setError(null);
         }
@@ -185,6 +135,6 @@ public class MainActivity extends BaseActivity
             }
         }
 
-        launchActivity(MainActivity.this, AyatActivity.class, b);
+        launchActivity(MainActivity.this, AyatActivity.class);
     }
 }
