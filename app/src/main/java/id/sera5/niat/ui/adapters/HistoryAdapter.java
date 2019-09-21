@@ -49,6 +49,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
         holder.textTanggal.setText(sf.format(date));
 
+        holder.textTanggal.setVisibility(View.GONE);
+
         if(myClickListener != null) holder.itemView.setOnClickListener(view -> myClickListener.onClick(item));
     }
 
