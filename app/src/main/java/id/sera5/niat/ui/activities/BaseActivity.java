@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
@@ -39,7 +40,7 @@ public class BaseActivity extends AppCompatActivity {
 
         if (c.moveToFirst()) {
             do {
-
+                Log.d("DATABASE_NIAT",c.getInt(1) + " ayat "+c.getInt(2));
             } while (c.moveToNext());
         }
 

@@ -1,10 +1,15 @@
 package id.sera5.niat.ui.activities;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
@@ -22,6 +27,7 @@ import butterknife.ButterKnife;
 import dmax.dialog.SpotsDialog;
 import id.sera5.niat.R;
 import id.sera5.niat.data.Constants;
+import id.sera5.niat.data.DatabaseHelper;
 import id.sera5.niat.utils.CommonUtils;
 
 public class AyatActivity extends BaseActivity {
@@ -32,6 +38,8 @@ public class AyatActivity extends BaseActivity {
     TextView hurufIndo;
 
     int suratRandom, ayat = 0;
+    @BindView(R.id.btn_save_ayat)
+    Button btnSaveAyat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,9 +113,26 @@ public class AyatActivity extends BaseActivity {
                 if (random < 0) random = new Random().nextInt(jumlah_ayat);
 
                 String teksArab = arabic.getJSONArray("ayahs").getJSONObject(random).getString("text").replace(Constants.BASMALLAH, "");
-                ;
+
                 String teksIndo = indo.getJSONArray("ayahs").getJSONObject(random).getString("text");
                 String label = String.format(Locale.US, "%s (%d): %d", namaSurat, surat, (random + 1));
+
+                int finalRandom = random + 1;
+                btnSaveAyat.setOnClickListener(view -> {
+                    SQLiteDatabase mdb = getWritableDatabase();
+
+                    ContentValues item = new ContentValues();
+
+                    item.put(DatabaseHelper.COL_SURAT, surat);
+                    item.put(DatabaseHelper.COL_AYAT, finalRandom);
+
+                    mdb.insert(DatabaseHelper.TABLE_TALL, null, item);
+                    mdb.close();
+
+                    Toast.makeText(AyatActivity.this,"Simpan ayat berhasil.",Toast.LENGTH_LONG).show();
+
+                    printDB();
+                });
 
                 setView(label, teksArab, teksIndo);
 

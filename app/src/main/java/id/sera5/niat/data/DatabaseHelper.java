@@ -25,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "%s INTEGER PRIMARY KEY," +
                 "%s INTEGER NOT NULL," +
                 "%s INTEGER NOT NULL," +
-                "%s TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL," +
+                "%s TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL" +
                 ");", TABLE_TALL, COL_ID, COL_SURAT, COL_AYAT, COL_DATE);
 
         sqLiteDatabase.execSQL(query);
