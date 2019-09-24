@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -94,7 +95,7 @@ public class AyatActivity extends BaseActivity {
 
         ad.show();
 
-        Volley.newRequestQueue(this).add(new StringRequest(Request.Method.GET, url, response -> {
+        Volley.newRequestQueue(AyatActivity.this).add(new StringRequest(Request.Method.GET, url, response -> {
             try {
                 int random = ayat - 1;
 
@@ -139,8 +140,9 @@ public class AyatActivity extends BaseActivity {
                 e.printStackTrace();
             }
         }, error -> {
-            //aa
-            //bb
+            ad.dismiss();
+            Toast.makeText(AyatActivity.this, "Failed to show ayat", Toast.LENGTH_LONG).show();
+            Log.d("AAA", error.getMessage());
         }));
     }
 
