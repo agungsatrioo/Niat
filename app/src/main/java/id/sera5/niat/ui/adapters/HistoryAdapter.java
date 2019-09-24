@@ -51,12 +51,17 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
         holder.textTanggal.setVisibility(View.GONE);
 
-        if(myClickListener != null) holder.itemView.setOnClickListener(view -> myClickListener.onClick(item));
+        if (myClickListener != null)
+            holder.itemView.setOnClickListener(view -> myClickListener.onClick(item));
     }
 
     @Override
     public int getItemCount() {
         return listAyat.size();
+    }
+
+    public interface MyClickListener {
+        public void onClick(History item);
     }
 
     class HistoryViewHolder extends RecyclerView.ViewHolder {
@@ -69,9 +74,5 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
-    }
-
-    public interface MyClickListener{
-        public void onClick(History item);
     }
 }

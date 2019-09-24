@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -129,7 +128,7 @@ public class AyatActivity extends BaseActivity {
                     mdb.insert(DatabaseHelper.TABLE_TALL, null, item);
                     mdb.close();
 
-                    Toast.makeText(AyatActivity.this,"Simpan ayat berhasil.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(AyatActivity.this, "Simpan ayat berhasil.", Toast.LENGTH_LONG).show();
 
                     printDB();
                 });

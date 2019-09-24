@@ -40,7 +40,7 @@ public class BaseActivity extends AppCompatActivity {
 
         if (c.moveToFirst()) {
             do {
-                Log.d("DATABASE_NIAT",c.getInt(1) + " ayat "+c.getInt(2));
+                Log.d("DATABASE_NIAT", c.getInt(1) + " ayat " + c.getInt(2));
             } while (c.moveToNext());
         }
 
