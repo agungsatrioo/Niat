@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1008337175936",
+    "firebase_url": "https://niat-a4367.firebaseio.com",
+    "project_id": "niat-a4367",
+    "storage_bucket": "niat-a4367.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008337175936:android:44c4c7c8312b14641d2d65",
+        "android_client_info": {
+          "package_name": "id.sera5.niat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008337175936-2qv14521gag0k0tcpupmfm3s0p7nhoh1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNLip6RLZA6qXMSRu2rm9jr1w5cq8S6ZY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008337175936-2qv14521gag0k0tcpupmfm3s0p7nhoh1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

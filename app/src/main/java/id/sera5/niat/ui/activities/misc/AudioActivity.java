@@ -2,6 +2,11 @@ package id.sera5.niat.ui.activities.misc;
 
 import android.os.Bundle;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.rygelouv.audiosensei.player.AudioSenseiPlayerView;
 
 import butterknife.BindView;
@@ -13,6 +18,8 @@ public class AudioActivity extends BaseActivity {
 
     @BindView(R.id.audio_player)
     AudioSenseiPlayerView audioPlayer;
+    @BindView(R.id.adView)
+    AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +31,14 @@ public class AudioActivity extends BaseActivity {
 
         setBackButton();
 
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
         audioPlayer.setAudioTarget(R.raw.audio);
     }
 }
